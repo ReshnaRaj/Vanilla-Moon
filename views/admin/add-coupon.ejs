@@ -1,0 +1,48 @@
+<%-include('../admin/layout/adminheader.ejs')%>
+    <h2 class="my-8 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+        You can Add coupon here
+    </h2>
+    <div class="grid gap-6 mb-8 md:grid-cols-5 lg:grid-cols-3">
+        <div class="col py-3">
+            <div class="row mt-3">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">ADD COUPENS</div>
+                            <hr />
+                            <p class="text-danger"><%=errors %></p>
+                            <form action="/admin/postaddcoop" method="post">
+                                <div class="form-group">
+                                    <label for="input-1">Coupen Code</label>
+                                    <input type="text" name="couponCode" class="form-control" id="input-1"
+                                        placeholder="" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="input-1">Coupen amount</label>
+                                    <input type="number" name="couponamount" class="form-control" id="input-1"
+                                        placeholder="" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="input-3">percentage</label>
+                                    <input type="text" name="percentage" class="form-control" id="input-3"
+                                        placeholder="" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="input-4">Minimum Amount</label>
+                                    <input type="number" name="minimumAmount" class="form-control" id="input-4"
+                                        placeholder="" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="input-4">Expiry Date</label>
+                                    <input type="date" id="date" name="expiryDate" class="form-control" placeholder=""/>
+                                </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success px-5"> submit</button>
+                    </div>
+
+
+<%-include('../admin/layout/adminfooter.ejs')%>

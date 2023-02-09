@@ -1,0 +1,55 @@
+
+<%-include('../admin/layout/adminheader.ejs')%>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 mx-auto mt-4">
+            <div class="card shadow">
+                <div class="card-header bg-primary">
+                    <h3 class="text-light">Add New product</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form action="/admin/addproduct" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="">ProductName</label>
+                            <input type="text" name="productName" class="form-control form-control-lg" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="">ProductImage</label>
+                            <input type="file" name="imagee" class="form-control form-control-lg" placeholder="choose an image" multiple  />
+                        </div>
+                        <div class="mb-3">
+                            <label for="Description">Description</label>
+                            <input type="text" name="description" class="form-control form-control-lg" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="category">Category</label>
+                            <select type="options" name="category" class="form-control form-control-lg">
+                             <% category.forEach((el)=>{%>
+                                <option value="<%= el._id%>"><%= el.name %></option>
+                            <% }) %> 
+                                </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="category">Size</label>
+                            <input type="number" name="size" class="form-control form-control-lg"  />
+                        </div>
+                        <div class="mb-3">
+                            <label for="category">Price</label>
+                            <input type="number" name="price" class="form-control form-control-lg"  />
+                        </div>
+                        <div class="mb-3">
+                            <label for="category">Stock</label>
+                            <input type="number" name="stock" class="form-control form-control-lg"  />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success px-5"> Add product</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%-include('../admin/layout/adminfooter.ejs')%>
+

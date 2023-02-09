@@ -1,0 +1,112 @@
+<%-include('../admin/layout/adminheader.ejs')%>
+<h2 class="my-8 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+     Report
+</h2>
+  <style>
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+
+      #section-to-print,
+      #section-to-print * {
+        visibility: visible;
+      }
+
+      #section-to-print {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+  </style>
+
+  <div id="adminRes" style="position: fixed; top: 0; left: 0; right: 0; z-index: 9;"></div>
+
+  <div class="container my-2">
+    <div class="  py-3 mb-2">
+
+      <a class="btn btn-dark btn-sm" style="height: 30px;" href="#" onclick="window.print()">
+        <i class="bi bi-printer"></i>
+        Print
+      </a>
+    </div>
+    <div class="table-responsive w-100" id="section-to-print">
+
+      <table id="myTable" class="table table-striped table-bordered table-responsive   table-success ">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Date</th>
+            <th>orderid</th>
+            <th>User</th>
+            <th>Items</th>
+            <th>Bill amount</th>
+            <th>Discount</th>
+            <th>Total bill</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <% salesData.forEach((val,i)=>{ %>
+
+            <tr>
+              <td><%= i+1 %></td>
+              <td><%= val.ordered_date.getDate() %>/<%= val.ordered_date.getMonth()+1 %>/<%=
+                      val.ordered_date.getFullYear() %></td>
+              <td class="small"> <%=val._id%> </td>
+              <td><%=val.userid.userName %></td>
+              <td><%=val.productt.length%></td>
+              <td><%=val.bill_amount%></td>
+              <td><%=val.coupon.discount%></td>
+              <td><%=val.bill_amount-(val.bill_amount*val.coupon.discount)/100%></td>
+
+              
+              
+
+             
+            </tr>
+
+            <% })%>
+          </tbody>
+          <tfoot>
+
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>TOTAL : </td>
+                <td id="grand" class="fw-bold">
+                </td>
+              </tr>
+            </tfoot>
+      </table>
+    </div>
+  </div>
+
+
+
+ 
+
+
+<script>
+  $(document).ready(function() {
+    var grandTotal = 0;
+    $('table tbody tr').each(function() {
+      var values = $(this).find('td:nth-child(8)').text();
+      value = values.replace("$", "")
+      grandTotal += parseFloat(value);
+      console.log(grandTotal,"sfd");
+    });
+    
+    $("#grand").text("$"+grandTotal);
+  });
+</script>
+
+
+
+
+<%-include('../admin/layout/adminfooter.ejs')%>

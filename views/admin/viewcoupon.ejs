@@ -1,0 +1,113 @@
+<%-include('../admin/layout/adminheader.ejs')%>
+  <h2 class="my-8 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+    Coupon Collection
+  </h2>
+  <% if (message) { %>
+    <div class="alert alert-dismissible fade show alert-<%=message.type  %>" role="alert">
+    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+    <strong><%=message.message  %> </strong>
+    </div>
+
+ 
+<% } %>
+  <div class="grid gap-6 mb-8 md:grid-cols-5 lg:grid-cols-3">
+    <div class="col py-3">
+      <a href="/admin/addcoop"><button type="submit" class="btn btn-info">ADD COUPON</button></a>
+    </div>
+    <!-- <div>
+         <a href=""><button type="button" class="btn btn-info">CREATE USER</button></a>
+     </div> -->
+    <table id="myTable" class="table">
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">COUPON CODE</th>
+          <th scope="col">COUPON AMOUNT</th>
+          <th scope="col">DISCOUNT</th>
+          <th scope="col">MINIMUM AMOUNT</th>
+          <th scope="col">EXP DATE</th>
+          <th scope="col">STATUS</th>
+          <th scope="col">ACTION</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% coupon.forEach(function(coup,i) { %>
+          <tr>
+            <td scope="row">
+              <%= i+1 %>
+            </td>
+
+            <td>
+              <%= coup.couponCode %>
+            </td>
+            <td>
+              <%=coup.couponamount %>
+            </td>
+            <td>
+              <%= coup.percentage %>
+            </td>
+            <td>
+              <%= coup.minimumAmount %>
+            </td>
+            <td>
+               <%=coup.expiryDate.getDate()+ '-' +(coup.expiryDate.getMonth()+1)+'-'+coup.expiryDate.getFullYear()%>
+            </td>
+            <td>
+              <%=coup.status %>
+            
+              <%
+                var expiryDatee = new Date(coup.expiryDate);
+                var currentDate = new Date();
+                if (expiryDatee > currentDate) {
+                  %>
+                  <span class="active text-success">Active</span>
+                  <%
+                } else {
+                  %>
+                  <span class="expired text-danger">Expired</span>
+                  <%
+                }
+              %>
+            </td>
+            <td>
+              <form action="/admin/editcoupon/<%=coup._id %>" method="get"><button type="submit" class="btn btn-success" style="width: 50px;"><i class="far fa-edit"></i></button></a></form>
+              <a href="/admin/deletecoupon/<%=coup._id %>" class="text-danger"><button type="button" class="btn btn-danger" style="width: 50px;"><i class="fa-solid fa-trash-can"></i></button></a>
+              
+            </td>
+          </tr>
+          <% }) %>
+
+      </tbody>
+    </table>
+  </div>
+
+
+  </div>
+  <script>
+        $(document).ready(function () {
+            $('#myTable').dataTable();
+        });
+    </script>
+//   <script>
+//      function coupon(id) {
+//     $.ajax({
+//     type: "POST",
+//     url: "/editcoupon",
+//    data: {id},
+//    dataType: "json",
+//   encode: true,
+//   }).done(function (data) {
+//     console.log(data.expiryDate); 
+//     $('#prodImg').attr('src','/productimages/'+data.image[0])
+//     $('#actionmodel').attr('action','/updateCoupon/'+data._id)
+//     $('#couponName').val(data.couponName)
+//     $('#couponCode').val(data.couponCode)
+//     $('#percentage').val(data.percentage)
+//     $('#Amount').val(data.amount)
+//     $('#expDate').val(data.expiryDate)
+//     $('#addtocart2').attr('onclick','addtocart("'+data._id+'") ') 
+//   });
+//   }
+// </script> 
+  <%-include('../admin/layout/adminfooter.ejs')%>

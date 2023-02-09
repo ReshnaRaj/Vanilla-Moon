@@ -1,0 +1,100 @@
+<%-include('../admin/layout/adminheader.ejs')%>
+    <h2 class="my-8 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+        Banners
+    </h2>
+    <% if (message) { %>
+        <div class="alert alert-dismissible fade show alert-<%= message.type  %>" role="alert">
+        <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+        <strong><%=message.message  %> </strong>
+        </div>
+    
+     
+    <% } %>
+    <div class="grid gap-6 mb-8 md:grid-cols-5 lg:grid-cols-4">
+        <div class="col py-3">
+            <div>
+                <a href="/admin/add-banner" class="btn btn-info">ADD BANNER</a>
+            </div>
+            <table class="table" id="table2">
+                <thead>
+                    <tr>
+                        <th scope="col">NO</th>
+                        <th scope="col">BannerName</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Url</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                        
+                        
+
+                    </tr>
+                </thead>
+               
+                    <tbody>
+                        <% banners.forEach((ban,i) =>{ %>
+                        <tr>
+                            <td scope="row">
+                                <%= i+1 %>
+                            </td>
+                            <td>
+                                <%= ban.Bname %>
+                            </td>
+                            <td>
+                                <%= ban.discription %> 
+                            </td>
+                            <td>
+                                <img style="height:50px; width:50px;" src="<%= ban.BImage[0] %> ">
+                            </td>
+                            <td>
+                                <%=ban.url  %> 
+                            </td>
+                            <td>
+                                <%=ban.status  %> 
+                            </td>
+
+                            <td>
+                            <div class="d-flex flex-lg-row">
+                            <!-- <div class="">
+                                <form action="/admin/editcategory/" method="get">
+                                    <button type="submit" class="btn-sm btn-success" style="width: 60px;"><i class="fas fa-edit fa-lg mx-1"></i></button>&nbsp;&nbsp;
+                                </form>
+                            </div> -->
+
+                                <div class="d-flex flex-lg-row">
+                                <% if (ban.status=="enable" ) { %>
+                                    <form action="/admin/disable/<%= ban._id %>" method="post">
+                                        <button type="submit" class="btn-sm btn-danger" style="width: 100px" >
+                                            Disable</button>
+                                        </form>
+                                    <% } else { %>
+                                        <form  action="/admin/enable/<%= ban._id %>"  method="post">
+                                            <button type="submit" class="btn-sm btn-success" style="width: 100px" > Enable</button>
+                                        </form>
+                                    
+                                    <% } %>
+                                    <div class="d-flex-lg-row">
+                                    <a href="/admin/deletebanner/<%=ban._id %>" class="btn-sm btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                                    
+                                    </div>
+                                </div>
+                                
+                            </div>        
+                            </td>
+
+
+
+                        </tr>
+
+                        <% }) %>
+                    </tbody>
+                    
+            </table>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#table2').dataTable();
+        });
+    </script>
+    <%-include('../admin/layout/adminfooter.ejs')%>

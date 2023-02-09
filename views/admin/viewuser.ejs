@@ -1,0 +1,75 @@
+<%-include('../admin/layout/adminheader.ejs')%> 
+
+<h2 class="my-8 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+  Our heartly Customers
+</h2>
+
+<div class="grid gap-6 mb-8 md:grid-cols-5 lg:grid-cols-4">
+  <div class="col py-3">
+    <!-- <div>
+       <a href=""><button type="button" class="btn btn-info">CREATE USER</button></a>
+   </div> -->
+   <table class="table" id="table3">
+       <thead>
+           <tr>
+               <th scope="col">NO</th>
+               <th scope="col">NAME</th>
+               <th scope="col">EMAIL</th>
+               <th scope="col">PHONE</th>
+               <th scope="col">STATUS</th>
+               <th scope="col">ACTION</th>
+
+           </tr>
+      </thead>
+
+      <tbody>
+       <% users.forEach((user,i) => { %>
+           <tr>
+               <th scope="row"><%= i+1 %> </th>
+               <td><%= user.userName %> </td>
+               <td><%= user.email %></td>
+               <td><%= user.Phone %></td>
+               <td><%= user.status %></td>
+              
+               <!-- <td> <a href=""
+                onclick="return confirm('Are you sure you want to block <%=user.userName %>')"><button
+                    type="button" class="btn btn-danger">BLOCK</button></a>
+                   <a href=""
+                       onclick="return confirm('Are you sure you want to unblock <%=user.userName %>')"><button
+                           type="button" class="btn btn-success">UNBLOCK</button></a>
+               </td> -->
+
+              
+
+              <td>
+                <% if (user.status=="Blocked" ) { %>
+                  <a onclick="return confirm('Are you sure you want to Unblock <%=user.userName%>')"> 
+                  <form action="/admin/unblockuser/<%= user._id %> " method="post">
+                    <button type="submit" class="btn btn-success" style="width: 100px;"> UnBlock</button>
+                  </form></a>
+                  <% } else { %>
+                    <a onclick="return confirm('Are you sure you want to block <%=user.userName%>')"> 
+                    <form action="/admin/blockuser/<%= user._id %> " method="post">
+                      <button type="submit" class="btn btn-danger" style="width: 100px;">
+                        Block</button>
+                    </form>
+                    </a>
+                    <% } %>
+              </td>
+           </tr>
+           
+          
+
+       
+      <% }) %>
+      </tbody>
+   </table>
+</div>
+</div>
+  <script>
+    $(document).ready(function () {
+        $('#table3').dataTable();
+    });
+</script>
+
+<%-include('../admin/layout/adminfooter.ejs')%> 

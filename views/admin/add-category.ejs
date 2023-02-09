@@ -1,0 +1,30 @@
+<%-include('../admin/layout/adminheader.ejs')%>
+<h2 class="my-8 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+    You can Add categories here
+</h2>
+<div class="grid gap-6 mb-8 md:grid-cols-5 lg:grid-cols-3">
+    <div class="col py-3">
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-md-12"> -->
+            <!-- <h3> You can Add categories here</h3> -->
+            <form action="/admin/addcategory" method="post">
+                <% if(errors) { %>
+                    <h5  style="color: red;">
+                      <%= errors %> 
+                  </h5>
+                  <% }else { %>
+                      
+                 <% } %> 
+            <input type="text"  name="name">
+            <button type="submit" class="btn btn-info">Add New Category</button>
+            </form>
+
+        <!-- </div> -->
+    </div>
+
+</div>
+
+
+
+<%-include('../admin/layout/adminfooter.ejs')%>

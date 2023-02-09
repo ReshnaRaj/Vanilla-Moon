@@ -1,0 +1,85 @@
+<%-include('../admin/layout/adminheader.ejs')%>
+    <h2 class="my-8 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+        Orders
+    </h2>
+
+    <div class="grid gap-6 mb-8 md:grid-cols-5 lg:grid-cols-4">
+        <div class="col py-3">
+            <table class="table" id="table2">
+                <thead>
+                    <tr>
+                        <th scope="col">NO:</th>
+                        <th scope="col">Order ID</th>
+                        <th scope="col">UserName</th>
+                        <th scope="col">No of Items</th>
+                        <th scope="col">Order Date</th>
+                        <th scope="col">Order Status</th>
+                        <th scope="col">Payment Method&Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% order.forEach((val,i) =>{ %>
+                    <tr>
+                        <td scope="row">
+                            <%= i+1 %>
+                        </td>
+                        <td>
+                            <%=val._id %>
+                        </td>
+                        <td>
+                            <%=val.userid.userName%> 
+                        </td>
+
+                        <td>
+                            <%=val.productt.length  %> 
+                        </td>
+                        <td>
+                            <%=val.ordered_date.getDate() %>/<%=val.ordered_date.getMonth()+1 %>/<%=val.ordered_date.getFullYear() %>
+                        </td>
+                        <td class="text-light">
+                            <!-- < % if(val.delivery_status.returned.state){ %> -->
+                            <!-- <p><b class="text-warning">RETURNED</b><small>(< %= val.delivery_status.returned.date.getDate() %>/< %= val.delivery_status.returned.date.getMonth()+1 %>/< %= val.delivery_status.returned.date.getFullYear() %>)</small> </p> -->
+                            <% if(val.delivery_status.delivered.state){ %>
+                            <p><b class="text-success">DELIVERED</b><small>(<%= val.delivery_status.delivered.date.getDate() %>/<%= val.delivery_status.delivered.date.getMonth()+1 %>/<%= val.delivery_status.delivered.date.getFullYear() %>)</small> </p>
+                            <% }else if(val.delivery_status.canceled.state){  %>
+                            <p> <b class="text-danger">CANCELED</b><small>(<%= val.delivery_status.canceled.date.getDate() %>/<%= val.delivery_status.canceled.date.getMonth()+1 %>/<%= val.delivery_status.canceled.date.getFullYear() %>)</small> </p>
+                            <% }else if(val.delivery_status.out_for_delivery.state){ %>
+                            <p> <b>OUT_FOR_DELIVERY</b><small>(<%= val.delivery_status.out_for_delivery.date.getDate() %>/<%= val.delivery_status.out_for_delivery.date.getMonth()+1 %>/<%= val.delivery_status.out_for_delivery.date.getFullYear() %>)</small> </p>
+                            <% }else if(val.delivery_status.shipped.state){  %>
+                            <p> <b class="text-info">SHIPPED</b><small>(<%= val.delivery_status.shipped.date.getDate() %>/<%= val.delivery_status.shipped.date.getMonth()+1 %>/<%= val.delivery_status.shipped.date.getFullYear() %>)</small> </p>
+                            <% }else if(val.delivery_status.ordered.state){  %>
+                            <p> <b>ORDERED</b><small>(<%=val.delivery_status.ordered.date.getDate() %>/<%= val.delivery_status.ordered.date.getMonth()+1 %>/<%= val.delivery_status.ordered.date.getFullYear() %>)</small> </p>
+                            <% } %>
+                        </td> 
+                        <td>
+                            <% if(val.payment.payment_status=='pending'){ %>
+                            <%=val.payment.payment_method %>-<span class="badge border border-warning  text-warning px-2 py-1 rounded-3 fw-bold"><%=val.payment.payment_status %></span>
+                            <% }else{ %>
+                            <%=val.payment.payment_method %>-<span class="badge border border-success  text-success px-2 py-1 rounded-3 fw-bold"><%=val.payment.payment_status %></span>
+                            <% } %>
+                          </td>
+                          <td>
+                            <a class="mx-3" href="/admin/orderlist/<%=val._id %>"><i class="fa-solid fa-eye"></i></a>
+                            <a href="/admin/orderinvoice/<%=val._id %>"><i class="fa-solid fa-receipt"></i></a>
+                          </td> 
+                        
+
+
+                    </tr>
+
+                    <% }) %>
+                </tbody>
+            </table>
+            
+        </div>        
+    </div> 
+    <script>
+        $(document).ready(function () {
+            $('#table2').dataTable();
+        });
+    </script>
+ 
+    
+   
+ <%-include('../admin/layout/adminfooter.ejs')%>
