@@ -1,34 +1,43 @@
-<%-include('../user/layout/userheader.ejs')  %> 
-    <!-- gLightbox gallery-->
-    <link rel="stylesheet" href="css/glightbox.min.css">
-    <!-- Range slider-->
-    <link rel="stylesheet" href="css/nouislider.min.css">
-    <!-- Choices CSS-->
-    <link rel="stylesheet" href="css/choices.min.css">
-    <!-- Swiper slider-->
-    <link rel="stylesheet" href="css/swiper-bundle.min.css">
-    <!-- Google fonts-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;700&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@300;400;800&amp;display=swap">
-    <!-- theme stylesheet-->
-    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
-    <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="css/custom.css">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="img/favicon.png">
+<%-include('../user/layout/userheader.ejs') %>
+  <!-- gLightbox gallery-->
+  <link rel="stylesheet" href="css/glightbox.min.css">
+  <!-- Range slider-->
+  <link rel="stylesheet" href="css/nouislider.min.css">
+  <!-- Choices CSS-->
+  <link rel="stylesheet" href="css/choices.min.css">
+  <!-- Swiper slider-->
+  <link rel="stylesheet" href="css/swiper-bundle.min.css">
+  <!-- Google fonts-->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;700&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@300;400;800&amp;display=swap">
+  <!-- theme stylesheet-->
+  <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+  <!-- Custom stylesheet - for your changes-->
+  <link rel="stylesheet" href="css/custom.css">
+  <!-- Favicon-->
+  <link rel="shortcut icon" href="img/favicon.png">
   </head>
+
   <body>
     <div class="page-holder">
       <!-- navbar-->
 
       <!--  Modal -->
-      <div class="modal fade" id="productView" tabindex="-1">
+      <!-- <div class="modal fade" id="productView" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-centered">
           <div class="modal-content overflow-hidden border-0">
-            <button class="btn-close p-4 position-absolute top-0 end-0 z-index-20 shadow-0" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button class="btn-close p-4 position-absolute top-0 end-0 z-index-20 shadow-0" type="button"
+              data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body p-0">
               <div class="row align-items-stretch">
-                <div class="col-lg-6 p-lg-0"><a class="glightbox product-view d-block h-100 bg-cover bg-center" style="background: url(img/product-5.jpg)" href="img/product-5.jpg" data-gallery="gallery1" data-glightbox="Red digital smartwatch"></a><a class="glightbox d-none" href="img/product-5-alt-1.jpg" data-gallery="gallery1" data-glightbox="Red digital smartwatch"></a><a class="glightbox d-none" href="img/product-5-alt-2.jpg" data-gallery="gallery1" data-glightbox="Red digital smartwatch"></a></div>
+                <div class="col-lg-6 p-lg-0"><a class="glightbox product-view d-block h-100 bg-cover bg-center"
+                    style="background: url(img/product-5.jpg)" href="img/product-5.jpg" data-gallery="gallery1"
+                    data-glightbox="Red digital smartwatch"></a><a class="glightbox d-none"
+                    href="img/product-5-alt-1.jpg" data-gallery="gallery1"
+                    data-glightbox="Red digital smartwatch"></a><a class="glightbox d-none"
+                    href="img/product-5-alt-2.jpg" data-gallery="gallery1" data-glightbox="Red digital smartwatch"></a>
+                </div>
                 <div class="col-lg-6">
                   <div class="p-4 my-md-4">
                     <ul class="list-inline mb-2">
@@ -40,10 +49,13 @@
                     </ul>
                     <h2 class="h4">Red digital smartwatch</h2>
                     <p class="text-muted">$250</p>
-                    <p class="text-sm mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus. Vestibulum ultricies aliquam convallis.</p>
+                    <p class="text-sm mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper
+                      leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes nascetur
+                      ridiculus mus. Vestibulum ultricies aliquam convallis.</p>
                     <div class="row align-items-stretch mb-4 gx-0">
                       <div class="col-sm-7">
-                        <div class="border d-flex align-items-center justify-content-between py-1 px-3"><span class="small text-uppercase text-gray mr-4 no-select">Quantity</span>
+                        <div class="border d-flex align-items-center justify-content-between py-1 px-3"><span
+                            class="small text-uppercase text-gray mr-4 no-select">Quantity</span>
                           <div class="quantity">
                             <button class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
                             <input class="form-control border-0 shadow-0 p-0" type="text" value="1">
@@ -51,32 +63,41 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-sm-5"><a class="btn btn-dark btn-sm w-100 h-100 d-flex align-items-center justify-content-center px-0" href="">Add to cart</a></div>
-                    </div><a class="btn btn-link text-dark text-decoration-none p-0" href="#!"><i class="far fa-heart me-2"></i>Add to wish list</a>
+                      <div class="col-sm-5"><a
+                          class="btn btn-dark btn-sm w-100 h-100 d-flex align-items-center justify-content-center px-0"
+                          href="">Add to cart</a></div>
+                    </div><a class="btn btn-link text-dark text-decoration-none p-0" href="#!"><i
+                        class="far fa-heart me-2"></i>Add to wish list</a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="container">
         <!-- HERO SECTION-->
-       
+
         <section class="py-5">
           <h2 class="h5 text-uppercase mb-4">Shopping cart</h2>
           <div class="row">
+            <% if(Cartdetails !=null && Cartdetails.productt.length !=0 ) { %>
             <div class="col-lg-8 mb-4 mb-lg-0">
               <!-- CART TABLE-->
+             
               <div class="table-responsive mb-4">
                 <table class="table text-nowrap">
                   <thead class="bg-light">
                     <tr>
-                      <th class="border-0 p-3" scope="col"> <strong class="text-sm text-uppercase">Product</strong></th>
-                      <th class="border-0 p-3" scope="col"> <strong class="text-sm text-uppercase">Price</strong></th>
-                      <th class="border-0 p-3" scope="col"> <strong class="text-sm text-uppercase">Quantity</strong></th>
-                      <th class="border-0 p-3" scope="col"> <strong class="text-sm text-uppercase">Total</strong></th>
-                      <th class="border-0 p-3" scope="col"> <strong class="text-sm text-uppercase"></strong></th>
+                     
+
+                        <th class="border-0 p-3" scope="col"> <strong class="text-sm text-uppercase">Product</strong>
+                        </th>
+                        <th class="border-0 p-3" scope="col"> <strong class="text-sm text-uppercase">Price</strong></th>
+                        <th class="border-0 p-3" scope="col"> <strong class="text-sm text-uppercase">Quantity</strong>
+                        </th>
+                        <th class="border-0 p-3" scope="col"> <strong class="text-sm text-uppercase">Total</strong></th>
+                        <th class="border-0 p-3" scope="col"> <strong class="text-sm text-uppercase"></strong></th>
                     </tr>
                   </thead>
                   <tbody class="border-0">
@@ -88,12 +109,14 @@
                         </strong>
                       </div>
                       <% } %>
-                    
-                    
-					<% let totalprice = 0; %> 
-					<% Cartdetails.productt.forEach((cartData)=>{ %>
-						<!-- <p>< %= cartData %> finshed </p> -->
-                    <!-- <tr>
+
+
+
+
+                        <% let totalprice=0; %>
+                          <% Cartdetails.productt.forEach((cartData)=>{ %>
+                            <!-- <p>< %= cartData %> finshed </p> -->
+                            <!-- <tr>
                       <th class="ps-0 py-3 border-light" scope="row">
                         <div class="d-flex align-items-center"><a class="reset-anchor d-block animsition-link" href="detail.html"><img src="img/product-detail-3.jpg" alt="..." width="70"/></a>
                           <div class="ms-3"><strong class="h6"><a class="reset-anchor animsition-link" href="detail.html">Red digital smartwatch</a></strong></div>
@@ -116,57 +139,101 @@
                       </td>
                       <td class="p-3 align-middle border-light"><a class="reset-anchor" href="#!"><i class="fas fa-trash-alt small text-muted"></i></a></td>
                     </tr> -->
-                    <tr id="<%=cartData.id._id%>cartitem">
-				
-                      <th class="ps-0 py-3 border-0" scope="row" id="divitem<%=cartData._id %>">
-						
-                        <div class="d-flex align-items-center"><a class="reset-anchor d-block animsition-link" href=""><img src="<%=cartData.id.image[0]%>"  style="height: 100px;width: 80px;"/></a>
-                          <div class="ms-3"><strong class="h6"><a class="reset-anchor animsition-link" href=""><%=cartData.id.productName %></a></strong></div>
-						  
-                        </div>
-                      </th>
+                            <tr id="<%=cartData.id._id%>cartitem">
 
-                      <td class="p-3 align-middle border-0">
-                        <p class="mb-0 small" id="product<%=cartData.id._id%>"><%=cartData.id.price %></p>
-                      </td>
-                      <td class="p-3 align-middle border-0">
-                        <div class="border d-flex align-items-center justify-content-between px-3"><span class="small text-uppercase text-gray headings-font-family">Quantity</span>
-                          <div class="quantity">
-                            <button class="dec-btn p-0" onclick="changequantity('<%=Cartdetails._id%>','<%=cartData.id._id%>','<%=Cartdetails.userr._id%>',-1)"><i class="fas fa-caret-left"></i></button>
-                            <input  class="form-control form-control-sm border-0 shadow-0 p-0" type="text"  id="<%=cartData.id._id%>" value="<%=cartData.quantity%>"/>
-                            <button class="inc-btn p-0" onclick="changequantity('<%=Cartdetails._id%>','<%=cartData.id._id%>','<%=Cartdetails.userr._id%>',1)"><i class="fas fa-caret-right"></i></button>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="p-3 align-middle border-0">
-                        <p class="mb-0 small" id="producttotal<%=cartData.id._id%>"><%=cartData.price %></p>
-                        
-                      </td>
-                      <td class="p-3 align-middle border-0"><a class="reset-anchor" href="#"><i class="fas fa-trash-alt small text-muted" onclick="removecart('<%=Cartdetails._id%>','<%=cartData.id._id%>')"></i></a></td>
-					            
-                    </tr>
-                    <% totalprice+= cartData.id.price*cartData.quantity%> 
-					<% }) %> 
+                              <th class="ps-0 py-3 border-0" scope="row" id="divitem<%=cartData._id %>">
+
+                                <div class="d-flex align-items-center"><a class="reset-anchor d-block animsition-link"
+                                    href=""><img src="<%=cartData.id.image[0]%>"
+                                      style="height: 100px;width: 80px;" /></a>
+                                  <div class="ms-3"><strong class="h6"><a class="reset-anchor animsition-link" href="">
+                                        <%=cartData.id.productName %>
+                                      </a></strong></div>
+
+                                </div>
+                              </th>
+
+                              <td class="p-3 align-middle border-0">
+                                <p class="mb-0 small" id="product<%=cartData.id._id%>">
+                                  <%=cartData.id.price %>
+                                </p>
+                              </td>
+                              <td class="p-3 align-middle border-0">
+                                <div class="border d-flex align-items-center justify-content-between px-3"><span
+                                    class="small text-uppercase text-gray headings-font-family">Quantity</span>
+                                  <div class="quantity">
+                                    <button class="dec-btn p-0"
+                                      onclick="changequantity('<%=Cartdetails._id%>','<%=cartData.id._id%>','<%=Cartdetails.userr._id%>',-1)"><i
+                                        class="fas fa-caret-left"></i></button>
+                                    <input class="form-control form-control-sm border-0 shadow-0 p-0" type="text"
+                                      id="<%=cartData.id._id%>" value="<%=cartData.quantity%>" />
+                                    <button class="inc-btn p-0"
+                                      onclick="changequantity('<%=Cartdetails._id%>','<%=cartData.id._id%>','<%=Cartdetails.userr._id%>',1)"><i
+                                        class="fas fa-caret-right"></i></button>
+                                  </div>
+                                </div>
+                              </td>
+                              <td class="p-3 align-middle border-0">
+                                <p class="mb-0 small" id="producttotal<%=cartData.id._id%>">
+                                  <%=cartData.price %>
+                                </p>
+
+
+                              </td>
+
+                              <td class="p-3 align-middle border-0"><a class="reset-anchor" href="#"><i
+                                    class="fas fa-trash-alt small text-muted"
+                                    onclick="removecart('<%=Cartdetails._id%>','<%=cartData.id._id%>')"></i></a></td>
+
+
+                            </tr>
+
+
+                            <% totalprice+=cartData.id.price*cartData.quantity%>
+
+                              <% }) %>
+
+
+
                   </tbody>
+
                 </table>
+
+
+
               </div>
-              <!-- CART NAV-->
-              <div class="bg-light px-4 py-3">
-                <div class="row align-items-center text-center">
-                  <div class="col-md-6 mb-3 mb-md-0 text-md-start"><a class="btn btn-link p-0 text-dark btn-sm" href="/shop"><i class="fas fa-long-arrow-alt-left me-2"> </i>Continue shopping</a></div>
-                  <div class="col-md-6 text-md-end"><a class="btn btn-outline-dark btn-sm" href="#" onclick="orderdata('<%=Cartdetails._id%>')">Procceed to checkout<i class="fas fa-long-arrow-alt-right ms-2"></i></a></div>
-                </div>
-              </div>
+              
+
+
+
+
+                  <!-- CART NAV-->
+                  <div class="bg-light px-4 py-3">
+                    <div class="row align-items-center text-center">
+                      <div class="col-md-6 mb-3 mb-md-0 text-md-start"><a class="btn btn-link p-0 text-dark btn-sm"
+                          href="/shop"><i class="fas fa-long-arrow-alt-left me-2"> </i>Continue shopping</a></div>
+                      <div class="col-md-6 text-md-end"><a class="btn btn-outline-dark btn-sm" href="#"
+                          onclick="orderdata('<%=Cartdetails._id%>')">Procceed to checkout<i
+                            class="fas fa-long-arrow-alt-right ms-2"></i></a></div>
+                    </div>
+                  </div>
             </div>
+
+
             <!-- ORDER TOTAL-->
             <div class="col-lg-4">
               <div class="card border-0 rounded-0 p-lg-4 bg-light">
                 <div class="card-body">
                   <h5 class="text-uppercase mb-4">Cart</h5>
                   <ul class="list-unstyled mb-0">
-                    <li class="d-flex align-items-center justify-content-between"><strong class="text-uppercase small font-weight-bold" style="padding-bottom: 9px;">Total Amount</strong><span class="text-muted small" id="cardTotal"><%=totalprice%></span></li>
+                    <li class="d-flex align-items-center justify-content-between"><strong
+                        class="text-uppercase small font-weight-bold" style="padding-bottom: 9px;">Total
+                        Amount</strong><span class="text-muted small" id="cardTotal">
+                        <%=totalprice%>
+                      </span></li>
                     <li class="border-bottom my-2"></li>
-                    
+
+
                     <!-- <li class="d-flex align-items-center justify-content-between mb-4"><strong class="text-uppercase small font-weight-bold">Total</strong><span>$250</span></li> -->
                     <li>
                       <form action="#">
@@ -180,9 +247,35 @@
                 </div>
               </div>
             </div>
+            <% } else { %>
+
+              <div class="row" style="display: flex; justify-content: center;">
+                
+                <div class="col-12 col-md-6 m-3" style="width: 100%;">
+                  <h1 class="text-center text-danger"><b>Cart is empty</b></h1>
+                  
+                </div>
+                
+                
+                <div class="col-12 col-md-6 mx-auto"><img src="/images/empty.png" style="width: 100%;" alt=""></div>
+                <div class="bg-light px-4 py-3">
+                  <div class="row align-items-center text-center">
+                    <a class="btn text-dark btn-sm" href="/shop">Shop Now</a></div>
+                </div>
+                
+                
+
+              </div>
+              
+
+              <% } %>
+              
           </div>
+         
         </section>
+
       </div>
+
 
       <!-- JavaScript files-->
       <script src="js/bootstrap.bundle.min.js"></script>
@@ -191,7 +284,7 @@
       <script src="js/swiper-bundle.min.js"></script>
       <script src="js/choices.min.js"></script>
       <script src="js/front.js"></script>
-      
+
 
 
 
@@ -204,32 +297,33 @@
 
 
       <script>
-       
+
         // ------------------------------------------------------- //
         //   Inject SVG Sprite - 
         //   see more here 
         //   https://css-tricks.com/ajaxing-svg-sprite/
         // ------------------------------------------------------ //
         function injectSvgSprite(path) {
-        
-            var ajax = new XMLHttpRequest();
-            ajax.open("GET", path, true);
-            ajax.send();
-            ajax.onload = function(e) {
+
+          var ajax = new XMLHttpRequest();
+          ajax.open("GET", path, true);
+          ajax.send();
+          ajax.onload = function (e) {
             var div = document.createElement("div");
             div.className = 'd-none';
             div.innerHTML = ajax.responseText;
             document.body.insertBefore(div, document.body.childNodes[0]);
-            }
+          }
         }
         // this is set to BootstrapTemple website as you cannot 
         // inject local SVG sprite (using only 'icons/orion-svg-sprite.svg' path)
         // while using file:// protocol
         // pls don't forget to change to your domain :)
-        injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg'); 
-        
+        injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg');
+
       </script>
       <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     </div>
-<%-include('../user/layout/userfooter.ejs')  %> 
+    <%-include('../user/layout/userfooter.ejs') %>

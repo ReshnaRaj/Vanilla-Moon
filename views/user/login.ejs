@@ -21,7 +21,7 @@
 
 
   <div class="d-lg-flex half">
-    <div class="bg order-1 order-md-2" style="background-image: url('/stylesheets/user/footwear.jpg');"></div>
+    <div class="bg order-1 order-md-2" style="background-image: url('/stylesheets/user/lady.jpg');background-size: cover;background-position: center; height: 100vh;"></div>
     <div class="contents order-2 order-md-1">
 
       <div class="container">
@@ -30,6 +30,15 @@
             <div class="mb-4">
               <form action="/doLogin" method="post">
                 <h3>Sign In</h3>
+                <% if (message) { %>
+                  <div class="alert alert-dismissible fade show alert-<%= message.type %>" role="alert">
+                    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <strong>
+                      <%= message.message %>
+                    </strong>
+                  </div>
+                  <% } %>
+
             </div>
              
 

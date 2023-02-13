@@ -169,7 +169,7 @@
     }
 
     function changequantity(cartId,proId,userId,count) {
-        // console.log("changequantity .........");
+        console.log("changequantity .........");
         let quantity = parseInt(document.getElementById(proId).value)
         // console.log("quantity working .....")
         // console.log(cartId, "cartid coming");
@@ -179,7 +179,7 @@
         // console.log(quantity, "quantity coming....");
         // console.log("start ")
         count = parseInt(count)
-        // console.log(cartId,proId,userId,count);
+        console.log(cartId,proId,userId,count);
         $.ajax({
             url: '/changequantity',
             method: 'post',
@@ -215,7 +215,8 @@
                     // console.log(total+"totaaaaaaaal");
                     $('#cardTotal').html(total - price)
                 }
-                if (response.removeProduct) {
+                
+              if (response.removeProduct) {
 
 
                     Swal.fire(
@@ -227,15 +228,14 @@
                     // $('#' + proId +'divitem').remove()
                     $('#'+proId+'cartitem').remove()
                 } else {
+
+                    console.log("change quantity working....");
+
                     // console.log(response.productprice+'TOTAL');
                     document.getElementById(proId).innerHTML = quantity + count
-                    document.getElementById('producttotal' + proId).innerHTML = parseInt(response.productprice)*(parseInt(quantity) + parseInt(count))
+                    document.getElementById('producttotal' + proId).innerHTML = parseInt(response.productprice)*(parseInt(quantity)+parseInt(count))
+                    // document.getElementById('cardTotal').innerHTML=parseInt(response.productprice)
                     // document.getElementById('grandTotal' + userId).innerHTML = parseInt(response.totalAmount)
-
-
-
-
-
 
                 }
             }

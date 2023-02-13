@@ -19,7 +19,7 @@
       </form>
     </div> -->
   </div>
-  </div>
+
 
   <div class="page-holder">
     <div class="container">
@@ -84,7 +84,7 @@
                         <h6>Address </h6>
                       </div>
                       <div class="col-md-4">
-                        <p><b><%=orderDetails.address.name %></b>,&nbsp;<%=orderDetails.address.house +', '+ orderDetails.address.post +', ' +orderDetails.address.pin %> <br><%=  orderDetails.address.city +',' +orderDetails.address.district+', '+orderDetails.address.state %></p>
+                        <p><b><%=orderDetails.address.name%></b>,<%=orderDetails.address.house+','+orderDetails.address.post +',' +orderDetails.address.pin %> <br><%=orderDetails.address.city+','+orderDetails.address.district+','+orderDetails.address.state %></p>
                       </div>
                     </div>
                     <div class="card p-3 bg-light my-2 col-lg-6 text-center" id="item">
@@ -118,9 +118,7 @@
                             <th class="border-0 p-3" scope="col"> <strong class="text-sm text-uppercase">Quantity</strong></th>
                             <th class="border-0 p-3" scope="col"> <strong class="text-sm text-uppercase">Price</strong></th>
                             <th class="border-0 p-3 text-center" scope="col"> <strong class="text-sm text-uppercase">Total</strong></th>
-                            <% if(orderDetails.delivery_status.delivered.state==true){ %>
-                            <!-- <th class="border-0 p-3 text-center" scope="col"> <strong class="text-sm text-uppercase">Review</strong></th> -->
-                            <% } %>
+                            
 
                           </tr>
                         </thead>
@@ -129,7 +127,7 @@
                            <% orderDetails.productt.forEach((val)=>{ %>
                           <!-- <tr id="< %= val._id %>item"> -->
                             <th class="ps-0 py-3 border-light ps-5" scope="row">
-                              <div class="d-flex align-items-center "><a class="reset-anchor d-block animsition-link " href="<%= val.product_id._id %>"><img src="<%=val.product_id.image[0] %>" alt="ProductDetials" width="70" /></a>
+                              <div class="d-flex align-items-center "><a class="reset-anchor d-block animsition-link " href="<%=val.product_id._id %>"><img src="<%=val.product_id.image[0] %>" alt="ProductDetials" width="70" /></a>
                               </div>
                             </th>
                             <th class="ps-0 py-3 border-light align-middle" scope="row">
@@ -153,15 +151,15 @@
                                   <%= val.price %>
                                 </span></p>
                             </td>
-                            <% if(orderDetails.delivery_status.delivered.state==true){ %>
-                            <!-- <td class="p-3 align-middle border-light">
+                            <!-- < % if(orderDetails.delivery_status.delivered.state==true){ %>
+                            <td class="p-3 align-middle border-light">
                               <button type="button " class="badge " data-bs-toggle="modal" data-bs-target="#exampleModalre" onclick="review()">
                                 <i class="bi bi-stars text-warning"></i>
                               </button>
 
-                            </td> -->
+                            </td>
 
-                            <% } %>
+                            < % } %> -->
 
                           </tr>
                           <% }) %>
@@ -184,13 +182,8 @@
                       Cancel Order
                     </button>
                   </div>
-                  <% }else if(orderDetails.delivery_status.returned.state==false){ %>
-                  <div class="d-flex justify-content-lg-end mb-3">
-                    <button type="button" class="btn btn-outline-danger ms-2" data-bs-toggle="modal" data-bs-target="#Return">
-                      Return
-                    </button>
-                  </div>
-                  <h5 class="text-success text-center border border-success">Order delivered</h5>
+                  
+                  <!-- <h5 class="text-success text-center border border-success">Order delivered</h5> -->
                   <% } %>
 
                   <!-- Modal -->
@@ -274,7 +267,7 @@
     if (data == "Ordercanceled") {
       Swal.fire("removed!", "This Order has been canceled.", "success");
       resHTML =
-        '<h5 class="text-success text-center border border-success">Order delivered</h5>';
+        '<h5 class="text-danger text-center border border-danger">Order canceled</h5>';
       $("#cancel").html(resHTML);
     }
   });

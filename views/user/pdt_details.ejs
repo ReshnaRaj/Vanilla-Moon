@@ -1,4 +1,4 @@
-<%-include('../user/layout/userheader.ejs')  %> 
+<%-include('../user/layout/userheader.ejs') %>
 
 	<!-- gLightbox gallery-->
 	<link rel="stylesheet" href="css/glightbox.min.css">
@@ -8,6 +8,9 @@
 	<link rel="stylesheet" href="css/choices.min.css">
 	<!-- Swiper slider-->
 	<link rel="stylesheet" href="css/swiper-bundle.min.css">
+	<link rel="stylesheet" href="css/zooming.css">
+	
+
 	<!-- <link rel="stylesheet" href="css/magnify.css"> -->
 	<!-- Google fonts-->
 	<link rel="stylesheet"
@@ -20,12 +23,13 @@
 	<link rel="stylesheet" href="/css/custom.css">
 	<!-- Favicon-->
 	<link rel="shortcut icon" href="images/item-10.jpg">
-	 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-	
+
+
 	<!-- <div class="page-holder bg-light"> -->
 	<!--  Modal -->
-	<div class="modal fade" id="productView" tabindex="-1">
+	<!-- <div class="modal fade" id="productView" tabindex="-1">
 		<div class="modal-dialog modal-lg modal-dialog-centered">
 			<div class="modal-content overflow-hidden border-0">
 				<button class="btn-close p-4 position-absolute top-0 end-0 z-index-20 shadow-0" type="button"
@@ -41,20 +45,20 @@
 								data-glightbox="Red digital smartwatch"></a></div>
 						<div class="col-lg-6">
 							<div class="p-4 my-md-4">
-						<!-- <ul class="list-inline mb-2">
+						<ul class="list-inline mb-2">
                       <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
                       <li class="list-inline-item m-0 1"><i class="fas fa-star small text-warning"></i></li>
                       <li class="list-inline-item m-0 2"><i class="fas fa-star small text-warning"></i></li>
                       <li class="list-inline-item m-0 3"><i class="fas fa-star small text-warning"></i></li>
                       <li class="list-inline-item m-0 4"><i class="fas fa-star small text-warning"></i></li>
-                    </ul> -->
-								<!-- <h2 class="h4">Red
+                    </ul>
+								<h2 class="h4">Red
 								</h2>
 								<p class="text-muted">$345
 	
 								</p>
 								<p class="text-sm mb-4">dfghxcfvgb
-								</p> -->
+								</p>
 								<div class="row align-items-stretch mb-4 gx-0">
 									<div class="col-sm-7">
 										<div class="border d-flex align-items-center justify-content-between py-1 px-3">
@@ -66,9 +70,9 @@
 											</div>
 										</div>
 									</div>
-									<!-- <div class="col-sm-5"><a
+									<div class="col-sm-5"><a
 											class="btn btn-dark btn-sm w-100 h-100 d-flex align-items-center justify-content-center px-0"
-											href="cart.html">Add to cart</a></div> -->
+											href="cart.html">Add to cart</a></div>
 								</div><a class="btn btn-link text-dark text-decoration-none p-0" href="#!"><i
 										class="far fa-heart me-2"></i>Add to wish list</a>
 
@@ -78,7 +82,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<section class="py-5">
 		<div class="container">
 			<div class="row mb-5">
@@ -87,36 +91,31 @@
 					<div class="row m-sm-0">
 						<div class="col-sm-2 p-sm-0 order-2 order-sm-1 mt-2 mt-sm-0 px-xl-2">
 							<div class="swiper product-slider-thumbs">
-								
+
 								<div class="swiper-wrapper d-flex flex-column">
-									<%for(i=0;i<pdtx.image.length;i++) { %> 
+									<%for(i=0;i<pdtx.image.length;i++) { %>
 										<div class="swiper-slide h-auto swiper-thumb-item mb-3">
-												
-										<img src="<%=pdtx.image[i] %>" class="w-100" alt="" >
+											<img src="<%=pdtx.image[i] %>" class="w-100" alt="">
 										</div>
-										<% } %> 
-									
-									
-									
+										<% } %>
+
+
+
 								</div>
-								
+
 							</div>
-						
+
 						</div>
 						<div class="col-sm-10 order-1 order-sm-2">
 							<div class="swiper product-slider">
 								<div class="swiper-wrapper">
-									
+
 									<%for(i=0;i<pdtx.image.length;i++) { %>
-										<div class="swiper-slide h-auto " style="background-color: white;"><a class="glightbox product-view"
-												href="<%= pdtx.image[i] %>" data-gallery="gallery2"
-												data-glightbox="Product item 1"><img class="img-fluid"
-													src="<%= pdtx.image[i] %>" alt="..."><div class="lens"></div></a></div>
+										<div class="zoom swiper-slide h-auto " style="background-color: white;">
+											<div class="magnifier-lens"></div>
+											<img class="img-fluid" src="<%= pdtx.image[i] %>" alt="">
+										</div>
 										<% } %>
-								
-
-
-				
 								</div>
 							</div>
 						</div>
@@ -124,52 +123,52 @@
 				</div>
 				<!-- PRODUCT DETAILS-->
 				<div class="col-lg-6">
-					
-					
-			
+					<div class="magnified-img"></div>
+
+
 					<!-- <div class="result"></div> -->
-					<h3 style="color:black;"><%=pdtx.productName %> </h3>
-					<h5 class="text-muted lead" class="text-capitalize">Category:<%=pdtx.category.name %> </h5>
-					<p class="text-muted lead">Price:<i class="bi bi-currency-rupee"><%=pdtx.price%></i> </p>
-					<p class="text-sm mb-4"><%=pdtx.description %></p> 
+					<h3 style="color:black;">
+						<%=pdtx.productName %>
+					</h3>
+					<h5 class="text-muted lead" class="text-capitalize">Category:<%=pdtx.category.name %>
+					</h5>
+					<p class="text-muted lead">Price:<i class="bi bi-currency-rupee">
+							<%=pdtx.price%>
+						</i> </p>
+					<p class="text-sm mb-4">
+						<%=pdtx.description %>
+					</p>
+					<div><a
+							class="bg-dark text-white" style="border: 10px solid black;" href="#"
+							onclick="addtocart('<%=pdtx.id %>')">Add to cart</a></div>
 					<div class="row align-items-stretch mb-4">
-						<!-- <div class="col-sm-5 pr-sm-0">
-							<div
-								class="border d-flex align-items-center justify-content-between py-1 px-3 bg-white border-white">
-								<span class="small text-uppercase text-gray mr-4 no-select">Quantity</span>
-								<div class="quantity">
-									<button class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
-									<input class="form-control border-0 shadow-0 p-0" type="text" value="1">
-									<button class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
-								</div>
-							</div>
-						</div> -->
-						<div class="col-sm-3 pl-sm-0"><a
-								class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0"
-								href="#" onclick="addtocart('<%=pdtx.id %>')">Add to cart</a></div>
-								<!-- <button type="submit" class="btn btn-warning" style="width:100px;height: 50px;">BUy Now</button> -->
-					</div><a class="text-dark p-0 mb-4 d-inline-block" type="submit" onclick="wishlisttick('<%=pdtx._id %>')"><i class="far fa-heart me-2"></i>Add to
+
+
+						<!-- <button type="submit" class="btn btn-warning" style="width:100px;height: 50px;">BUy Now</button> -->
+					</div><a class="text-dark p-0 mb-4 d-inline-block" type="submit"
+						onclick="wishlisttick('<%=pdtx._id %>')"><i class="far fa-heart me-2"></i>Add to
 						wish list</a><br>
 					<ul class="list-unstyled small d-inline-block">
 						<!-- <li class="px-3 py-2 mb-1 bg-white"><strong class="text-uppercase">SKU:</strong><span
 								class="ms-2 text-muted">039</span></li> -->
 						<li class="px-3 py-2 mb-1 bg-white text-muted"><strong
-								class="text-uppercase text-dark">Size:</strong><a class="reset-anchor ms-2"
-								href="#!"><%=pdtx.size %> </a></li>
-								<ul class="list-inline mb-2 text-sm">
-									<li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
-									<li class="list-inline-item m-0 1"><i class="fas fa-star small text-warning"></i></li>
-									<li class="list-inline-item m-0 2"><i class="fas fa-star small text-warning"></i></li>
-									<li class="list-inline-item m-0 3"><i class="fas fa-star small text-warning"></i></li>
-									<li class="list-inline-item m-0 4"><i class="fas fa-star small text-warning"></i></li>
-								</ul>
-								
-						
+								class="text-uppercase text-dark">Size:</strong><a class="reset-anchor ms-2" href="#!">
+								<%=pdtx.size %>
+							</a></li>
+						<ul class="list-inline mb-2 text-sm">
+							<li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
+							<li class="list-inline-item m-0 1"><i class="fas fa-star small text-warning"></i></li>
+							<li class="list-inline-item m-0 2"><i class="fas fa-star small text-warning"></i></li>
+							<li class="list-inline-item m-0 3"><i class="fas fa-star small text-warning"></i></li>
+							<li class="list-inline-item m-0 4"><i class="fas fa-star small text-warning"></i></li>
+						</ul>
+
+
 						<!-- <li class="px-3 py-2 mb-1 bg-white text-muted"><strong
 								class="text-uppercase text-dark">Tags:</strong><a class="reset-anchor ms-2"
 								href="#!">Innovation</a></li> -->
 					</ul>
-					
+
 				</div>
 			</div>
 			<!-- DETAILS TABS-->
@@ -354,76 +353,46 @@
         </div>
       </footer> -->
 	<!-- JavaScript files -->
-	<script>
-    function wishlisttick(id) {
-console.log("qqqqqqqqqqqqqqqqqqqqqqqqqq");
-Swal.fire({
-  position: 'top-center',
-  icon: 'success',
-  title: 'Your product added to wishlist',
-  showConfirmButton: false,
-  timer: 1500
-}).then((result) => {
-if (result.isConfirmed) {
-  
-//   $.ajax({
-//       type: "POST",
-//       url: "/wishlist",
-//      data: {id},
-//      dataType: "json",
-//     encode: true,
-//     }).done(function (data) { 
-//         $('#'+id+'item').add()
-//       Swal.fire(
-//     'Added',
-//     'This Product  has been Added.',
-//     'success'
-//   )
-      
-      
-//     });
-  }
-  })
-  }
-  </script>
-	
+	<%-include('../user/layout/userfooter.ejs') %>
+	<script src="js/scrript.js"></script>
+		
+		
 
 
-	<script src="js/bootstrap.bundle.min.js"></script>
-	<script src="js/glightbox.min.js"></script>
-	<script src="js/nouislider.min.js"></script>
-	<script src="js/swiper-bundle.min.js"></script>
-	<script src="js/choices.min.js"></script>
-	<script src="js/front.js"></script>
-	<!-- <script src="js/sccript.js"></script> -->
-	<script>
-		// ------------------------------------------------------- //
-		//   Inject SVG Sprite - 
-		//   see more here 
-		//   https://css-tricks.com/ajaxing-svg-sprite/
-		// ------------------------------------------------------ //
-		function injectSvgSprite(path) {
 
-			var ajax = new XMLHttpRequest();
-			ajax.open("GET", path, true);
-			ajax.send();
-			ajax.onload = function (e) {
-				var div = document.createElement("div");
-				div.className = 'd-none';
-				div.innerHTML = ajax.responseText;
-				document.body.insertBefore(div, document.body.childNodes[0]);
+		<script src="js/bootstrap.bundle.min.js"></script>
+		<script src="js/glightbox.min.js"></script>
+		<script src="js/nouislider.min.js"></script>
+		<script src="js/swiper-bundle.min.js"></script>
+		<script src="js/choices.min.js"></script>
+		<script src="js/front.js"></script>
+
+		<!-- <script src="js/sccript.js"></script> -->
+		<script>
+			// ------------------------------------------------------- //
+			//   Inject SVG Sprite - 
+			//   see more here 
+			//   https://css-tricks.com/ajaxing-svg-sprite/
+			// ------------------------------------------------------ //
+			function injectSvgSprite(path) {
+
+				var ajax = new XMLHttpRequest();
+				ajax.open("GET", path, true);
+				ajax.send();
+				ajax.onload = function (e) {
+					var div = document.createElement("div");
+					div.className = 'd-none';
+					div.innerHTML = ajax.responseText;
+					document.body.insertBefore(div, document.body.childNodes[0]);
+				}
 			}
-		}
-		// this is set to BootstrapTemple website as you cannot 
-		// inject local SVG sprite (using only 'icons/orion-svg-sprite.svg' path)
-		// while using file:// protocol
-		// pls don't forget to change to your domain :)
-		injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg');
+			// this is set to BootstrapTemple website as you cannot 
+			// inject local SVG sprite (using only 'icons/orion-svg-sprite.svg' path)
+			// while using file:// protocol
+			// pls don't forget to change to your domain :)
+			injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg');
 
-	</script>
-	<!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
-		integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-	
-<%-include('../user/layout/userfooter.ejs')  %> 
-
+		</script>
+		<!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+			integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">

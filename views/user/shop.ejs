@@ -129,6 +129,7 @@
 					<div class="col-lg-3 col-xl-3">
 						<div class="row">
 							<div class="col-sm-12">
+								
 								<!-- <div class="side border mb-1">
 									<h3>Brand</h3>
 									<ul>
@@ -140,11 +141,22 @@
 									</ul>
 								</div> -->
 							</div>
+							<button class="btn  dropdown-toggle text-dark"
+							style="background-color: rgba(255, 255, 255, 0); border-radius: 0; display: inline-block;" type="button"
+							data-bs-toggle="dropdown" aria-expanded="false">
+							Sort by
+						</button>
+						<ul class="dropdown-menu text-white" style="background-color: #000;">
+							
+							<li><a class="dropdown-item text-white" href="/shop?sort=price">Price</a></li>
+						</ul>
 							<div class="col-sm-12">
+								
 								<div class="side border mb-1">
+								
+									
 									<h3>Size</h3>
-									<div class="block-26 mb-2">
-										
+									<div class="block-26 mb-2">	
 					               <ul>
 									<% sizes.forEach((val)=>{ %>
 										<li><a href="#"><%= val %> </a></li>
@@ -217,6 +229,7 @@
 									</ul>
 									 
 								</div>
+								
 							</div>
 							<!-- // <div class="col-sm-12">
 							// 	<div class="side border mb-1">

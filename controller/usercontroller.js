@@ -10,6 +10,7 @@ const CartModel = require('../models/CartModel')
 const orderModel = require('../models/orderModel')
 const couponModel = require('../models/CouponModel')
 const Razorpay = require('razorpay')
+ObjectId = require('mongodb').ObjectID;
 
 const crypto = require('crypto')
 require("dotenv").config();
@@ -77,7 +78,13 @@ module.exports = {
       const user = await UserModel.findOne({ email: email });
       console.log(user, 'already registered user loginnedd');
       if (!user) {
-        return res.redirect('/signup');
+        
+        req.session.message = {
+          type: 'danger',
+          message: 'You are a new user  plz create new registration',
+          
+        }
+        return res.redirect('/login');
       }
       else if (user.status != 'Blocked') {
 
@@ -85,12 +92,26 @@ module.exports = {
         const isMatch = await bcrypt.compare(password, user.password);
         console.log(isMatch, 'match');
         if (!isMatch) {
-          return res.redirect('/signup');
+          req.session.userLoggedIn = false
+        req.session.message = {
+          type: 'danger',
+          message: 'Invalid password'
+        }
+          return res.redirect('/login');
         }
         req.session.user = user
         console.log(req.session.user);
         res.redirect('/');
-      } else {
+      } 
+      else if(user.status == 'Blocked'){
+        
+        req.session.message = {
+          type: 'danger',
+          message: 'Sorry Admin Banned your account'}
+          res.redirect('/login')
+
+
+      }else {
         res.redirect('/login')
       }
     } catch (err) {
@@ -362,6 +383,21 @@ module.exports = {
       let pdtss = await productModel.find({ category: req.query.ctdc })
       res.render('user/shop', { user, cat, pdtss, page, sizes })
     }
+    else if(req.query.sort){
+      try {
+        console.log("sorting working...");
+        if(req.query.sort=='price'){
+          let pdtss=await productModel.find().sort({price:1}).collation({ locale: "en", numericOrdering: true }).limit(ITEMS_PAGE)
+          res.render('user/shop',{user,cat,pdtss,page,sizes})
+        }
+        
+        
+      } catch (error) {
+        console.log(error,"loll");
+        next(error)
+        
+      }
+    }
     const pdtss = await productModel.find()
       .skip((page - 1) * ITEMS_PAGE)
       .limit(ITEMS_PAGE)
@@ -373,11 +409,11 @@ module.exports = {
     let userId = req.session.user._id
     console.log(userId + "yyyyyyyyy");
     let Cartdetails = await CartModel.findOne({ userr: userId }).populate('productt.id')
-    if (!Cartdetails) {
-      Cartdetails = {
-        productt: []
-      }
-    }
+    // if (!Cartdetails) {
+    //   Cartdetails = {
+    //     productt: []
+    //   }
+    // }
     console.log(Cartdetails, "cartdetails ssssssssssssssssss...");
     // let cart3=Cartdetails
     // console.log(cart3,"carts3 coming...");
@@ -455,7 +491,7 @@ module.exports = {
       let productprice;
       let cartdetail = req.body;
 
-      //  console.log(cartdetail,"inside change quantity")
+       console.log(cartdetail,"inside change quantity")
       let product = await productModel.findOne({ _id: cartdetail.product });
       console.log(product, "cartproduct");
       cartdetail.count = parseInt(cartdetail.count);
@@ -497,11 +533,17 @@ module.exports = {
             },
           }
         );
-        let cartdata = await CartModel.findOne({ userId: cartdetail.user });
-
+        let cartdata = await CartModel.findOne({ userr: cartdetail.user });
+        console.log(cartdata ,"fffffffffff");
+ 
+         
         let proExist = cartdata.productt.findIndex(
-          (p) => p.id == cartdetail.product
+         
+          (p) => p.id ==  cartdetail.product
+          
         );
+       
+        console.log(proExist,"proExist")
         let q = cartdata.productt[proExist].quantity;
         totalAmount = cartdata.carttotal;
         // console.log(totalAmount, "carttotal");
@@ -593,6 +635,7 @@ module.exports = {
         // console.log(cartbill);
 
       }
+      
 
     } catch (err) {
       next(err)
@@ -809,8 +852,9 @@ module.exports = {
     }
   },
   cancelOrder: (req, res, next) => {
-    console.log("order cancel working..");
+  
     try {
+      console.log("order cancel working..");
       orderModel
         .updateOne(
           { _id: req.body.id },

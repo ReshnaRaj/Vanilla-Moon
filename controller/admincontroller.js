@@ -8,6 +8,7 @@ const {handleDuplicate}=require('../errorHandling/dberrors');
 const CouponModel = require('../models/CouponModel');
 const {couponduplicate}=require('../errorHandling/dberrors');
 const orderModel = require('../models/orderModel');
+const sharp=require('sharp')
 
 
 
@@ -364,9 +365,7 @@ addcategory:(req,res)=>{
         Bname:req.body.Bname,
         BImage:imgUrl,
         url:req.body.url,
-  
-        discription:req.body.discription,
-         
+        discription:req.body.discription,   
       })
       banne.save((error)=>{
         if(error) {
@@ -381,8 +380,7 @@ addcategory:(req,res)=>{
       })
       
    } catch (error) {
-    // console.log(error);
-    next(error)
+       next(error)
    }
 
   },

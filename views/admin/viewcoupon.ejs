@@ -89,25 +89,5 @@
             $('#myTable').dataTable();
         });
     </script>
-//   <script>
-//      function coupon(id) {
-//     $.ajax({
-//     type: "POST",
-//     url: "/editcoupon",
-//    data: {id},
-//    dataType: "json",
-//   encode: true,
-//   }).done(function (data) {
-//     console.log(data.expiryDate); 
-//     $('#prodImg').attr('src','/productimages/'+data.image[0])
-//     $('#actionmodel').attr('action','/updateCoupon/'+data._id)
-//     $('#couponName').val(data.couponName)
-//     $('#couponCode').val(data.couponCode)
-//     $('#percentage').val(data.percentage)
-//     $('#Amount').val(data.amount)
-//     $('#expDate').val(data.expiryDate)
-//     $('#addtocart2').attr('onclick','addtocart("'+data._id+'") ') 
-//   });
-//   }
-// </script> 
+ 
   <%-include('../admin/layout/adminfooter.ejs')%>
