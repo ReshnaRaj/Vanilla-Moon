@@ -41,7 +41,7 @@
 
 .availability-calendar-toolbar input:active {
 	background: #D5D5D5;
-	background-image: linear-gradient(to bottom, #DDD, #C6C6C6);
+	background-image: linear-gradient(to bottom, #131212b6, #C6C6C6);
 }
 
 

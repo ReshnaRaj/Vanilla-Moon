@@ -56,6 +56,7 @@ router.get('/editproduct/:id',adminSession,controller.editproduct)
 router.post('/posteditproduct/:id',adminSession,controller.posteditproduct)
 router.post('/listpdt/:id',adminSession,controller.listpdt)
 router.post('/unlistpdt/:id',adminSession,controller.unlistpdt)
+router.get('/imagedelete',controller.imagedelete)
 
 
 

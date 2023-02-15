@@ -208,6 +208,7 @@ editproduct:async(req,res,next)=>{
 },
 posteditproduct:async(req,res,next)=>{
   try {
+    console.log("POST EDIT PRODUCT");
     console.log(req.files,'huuuuuu');
     const id=req.params.id;
     // console.log(req.body.category,'ivde');
@@ -216,13 +217,16 @@ posteditproduct:async(req,res,next)=>{
     console.log(req.body);
     const image=req.files.imagee
    
+    
+   
     if(image){
       console.log('coming here');
       const img = []
     image.forEach(element => {
       img.push(element.path.substring(6))
+      // sharp(files.path).resize({width:400,height:500}).toFile(`images`)
     });
-    await productModel.findOneAndUpdate({_id:id},{$set:{image:img}})
+    await productModel.findOneAndUpdate({_id:id},{$push:{image:img}})
     
     
     }
@@ -335,7 +339,14 @@ addcategory:(req,res)=>{
   // console.log("editttt");
   res.redirect('/admin/viewcate')
       
-    } catch (error) {
+    } catch (err) {
+      const error={...err}
+      let errors 
+      if(error.code===11000){
+        errors=handleDuplicate(error)
+        // res.redirect('/admin/editcategory/:id')
+        res.render('admin/add-category',{page:"catees",errors})
+      }
       next(error)
       
     }
@@ -512,7 +523,7 @@ addcategory:(req,res)=>{
  vieworder:async(req,res,next)=>{
   try {
     console.log("order coming....")
-    const order=await orderModel.find().populate('userid').sort({ordered_date:-1})
+    const order=await orderModel.find({order_status:{$ne:'pending'}}).populate('userid').sort({ordered_date:-1})
     
     res.render('admin/view-order',{page:'order',order})
     
@@ -627,7 +638,26 @@ addcategory:(req,res)=>{
   viewReport:async(req,res)=>{
     try {
       console.log("working...");
-      salesData=await orderModel.find().populate('userid')
+      salesData=await orderModel.aggregate([
+        {
+          $match: {
+            order_status: "completed",
+            $and: [
+              { ordered_date: { $gt: new Date(req.body.fromDate) } },
+              { ordered_date: { $lt: new Date(req.body.toDate) } },
+            ],
+          },
+        },
+        {
+          $lookup: {
+            from: "users",
+            localField: "userid",
+            foreignField: "_id",
+            as: "userx",
+          },
+        },
+      ])
+      console.log(salesData,"saledata working...");
       res.render('admin/viewreport',{page:'sales',salesData})
       
     } catch (error) {
@@ -727,6 +757,22 @@ unlistcate: async (req, res) => {
   } catch (err) {
       next(err)
   }
+},
+
+imagedelete:async(req,res,next)=>{
+try {
+  console.log("IMAGE DELETE");
+  const val = req.query.i;
+  const id = req.query.pid;
+  // fs.unlink(path.join(__dirname,  val), () => {});
+ const pro = await productModel.findOne({ _id: id });
+ console.log(pro,"products");
+ pro.image.splice(val,1)
+await pro.save()
+  res.json('succes')
+} catch (error) {
+  next(error)
+}
 },
 // -------------------------------END OF LIST AND UNLIST CATEGORY---------------------------
 

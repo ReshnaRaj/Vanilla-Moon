@@ -55,7 +55,7 @@
               <td><%= val.ordered_date.getDate() %>/<%= val.ordered_date.getMonth()+1 %>/<%=
                       val.ordered_date.getFullYear() %></td>
               <td class="small"> <%=val._id%> </td>
-              <td><%=val.userid.userName %></td>
+              <td><%=val.userx[0].userName %></td>
               <td><%=val.productt.length%></td>
               <td><%=val.bill_amount%></td>
               <td><%=val.coupon.discount%></td>
@@ -105,8 +105,4 @@
     $("#grand").text("$"+grandTotal);
   });
 </script>
-
-
-
-
 <%-include('../admin/layout/adminfooter.ejs')%>

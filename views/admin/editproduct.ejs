@@ -4,6 +4,7 @@
         <div class="col-lg-6 mx-auto mt-4">
             <div class="card shadow">
                 <div class="card-header bg-primary">
+                    
                     <form action="/admin/posteditproduct/<%=pdt._id %>" onsubmit="return validateform()" method="post" enctype="multipart/form-data">
                         <h3 class="text-light">Edit product</h3>
                 </div>
@@ -17,16 +18,24 @@
                     </div>
                     <div class="mb-3">
                         <label for="">ProductImage</label>
+                        <div class="form-outline mb-4 d-flex">
+                            <%pdt.image.forEach((img,index)=>{  %>
+                              
+                          <div id="<%= index %>">
+                           <button type="button" onclick="imagedelete('<%= pdt._id %>','<%=index%>')"><i class="fa-sharp fa-solid fa-trash text-danger"></i></button>
+                           <img src="<%=img %> "  id="imgView" class="mb-3" width="100px" height="auto"
+                           alt="">
+                          </div>
+                         
+                               <%})  %> 
+                               <img src="" id="imgViews" class="mb-3" width="100px" height="auto" alt="">
+                           <!-- <input type="file" name="image" class="form-control form-control-lg" placeholder="choose an image" multiple /> -->
+                       </div>
+                      
                         <!-- <input type="text" name="image" value=""class="form-control form-control-lg"/> -->
                         <input type="file" onchange="viewImage(event)" name="imagee" placeholder="choose an image"
                             multiple />
-                        <div class="form-outline mb-4 d-flex">
-                             <%pdt.image.forEach((img)=>{  %>
-                            <img src="<%=img %> " id="imgView" class="mb-3" width="100px" height="auto"
-                                alt="">
-                                <%})  %> 
-                            <!-- <input type="file" name="image" class="form-control form-control-lg" placeholder="choose an image" multiple /> -->
-                        </div>
+                       
                         
                         <div class="mb-3">
                             <label for="Description">Description</label>
@@ -80,7 +89,7 @@
     <%-include('../admin/layout/adminfooter.ejs')%>
     <script>
         function viewImage(e) {
-            document.getElementById('imgView').src = URL.createObjectURL(e.target.files[0])
+            document.getElementById('imgViews').src = URL.createObjectURL(e.target.files[0])
 
         }
 
@@ -95,7 +104,33 @@
         }
     </script>
     <script>
-      
-    </script>
+      function imagedelete(pid,i) {
+        console.log("haiiiiii");
+        console.log(pid+"PRODUCT ID")
+        console.log(i+"IMG");
+        // $.ajax({
+        //     method:"get",
+        //     url: `/imagedelete?pid=${pid}&i=${i}`,
+        //     dataType: "json",
+        //     encode: true,
+        // }).done(function (data) {
 
+        //     if(data=='succes'){
+        //         alert("SUCCESS")
+    
+        //     }
+        // })
+        fetch(
+            `/admin/imagedelete?pid=${pid}&i=${i}`,
+            {
+            method:'get',
+        }).then(function (data) {
+
+    if(data=='succes'){
+        alert("SUCCESS")
+       document.getElementById(i).remove()
+    }
+})
+      }
+    </script>
 

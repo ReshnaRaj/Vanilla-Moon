@@ -294,7 +294,8 @@ module.exports = {
   addcheckaddress: async (req, res) => {
     try {
       const id = req.params.id;
-      let isExistornot = await UserModel.findOne({ _id: id })
+      order = await orderModel.findOne({_id:id})
+      let isExistornot = await UserModel.findOne({ _id: order.userid })
       console.log(isExistornot + "data coming.......")
       let newcheckaddresss = {
         'name': req.body.Name,
@@ -305,7 +306,7 @@ module.exports = {
         'state': req.body.state,
         'pin': req.body.pin
       }
-      await UserModel.updateOne({ _id: id }, { $push: { address: newcheckaddresss } })
+      await UserModel.updateOne({ _id: order.userid }, { $push: { address: newcheckaddresss } })
       res.redirect('/checkout/' + id)
     } catch (error) {
       console.log("000000000000");
@@ -375,19 +376,19 @@ module.exports = {
     const page = req.query.page
     console.log(user);
     console.log("kkkk");
-    let cat = await categoryModel.find()
+    let cat = await categoryModel.find({status:'Listed'})
     const sizes = await productModel.distinct('size')
 
     if (req.query.ctdc) {
       console.log(req.query.ctdc, "eeeeeeeeeeeee");
-      let pdtss = await productModel.find({ category: req.query.ctdc })
+      let pdtss = await productModel.find({ category: req.query.ctdc , status:'Listed'})
       res.render('user/shop', { user, cat, pdtss, page, sizes })
     }
     else if(req.query.sort){
       try {
         console.log("sorting working...");
         if(req.query.sort=='price'){
-          let pdtss=await productModel.find().sort({price:1}).collation({ locale: "en", numericOrdering: true }).limit(ITEMS_PAGE)
+          let pdtss=await productModel.find({status:'Listed'}).sort({price:1}).collation({ locale: "en", numericOrdering: true }).limit(ITEMS_PAGE)
           res.render('user/shop',{user,cat,pdtss,page,sizes})
         }
         
@@ -398,7 +399,24 @@ module.exports = {
         
       }
     }
-    const pdtss = await productModel.find()
+    else if(req.query.search){
+      console.log("search part1 ");
+      try {
+        console.log("searching working...");
+        let key=req.query.search
+        let pdtss=await productModel.find({ productName:{ $regex:key, $options:'i'},status:'Listed'})
+        console.log(pdtss,"tttttttttt");
+        console.log(key,"hhhhhhhhhhhhh");
+        let cat=await categoryModel.find()
+        res.render('user/shop', { user, cat, pdtss, page, sizes })
+
+        
+      } catch (error) {
+        console.log(error)
+        
+      }
+    }
+    const pdtss = await productModel.find({status:'Listed'})
       .skip((page - 1) * ITEMS_PAGE)
       .limit(ITEMS_PAGE)
 
@@ -731,6 +749,7 @@ module.exports = {
           return product.qnty <= product.product_id.stock;
 
         });
+        
         if (!isStockAvailable) {
           console.log(isStockAvailable,"+++-----");
           let outOfStockProducts = [];
@@ -884,13 +903,13 @@ module.exports = {
   },
   vieworder: async (req, res) => {
     try {
-
       console.log(req.session.user._id, "user session working..");//here we giving the _id to get the id of the user,we can give the user only not a problem
-      orderModel.find({ userid: req.session.user._id.toString() }).populate('productt.product_id').then((orderDetails) => {
+      orderModel.find({ userid: req.session.user._id.toString(),order_status:{$ne:'pending'}}).populate('productt.product_id').sort({ordered_date:-1}).then((orderDetails) => {
         console.log(orderDetails, "orderdetails working");
         res.render('user/vieworder', { orderDetails, user: req.session.user })
 
       })
+    
 
 
     } catch (error) {
@@ -901,6 +920,7 @@ module.exports = {
   singleorder: async (req, res, next) => {
 
     console.log("single ordeer details coming");
+    
     try {
       let orderDetails = await orderModel.findOne({ _id: req.params.id }).populate('productt.product_id').then((orderDetails) => {
         console.log(orderDetails, "999999999999999999999");

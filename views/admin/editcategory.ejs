@@ -1,11 +1,14 @@
 <%-include('../admin/layout/adminheader.ejs')%>
     <div class="container">
         <div class="row">
+            
             <% category.forEach((cate)=> { %> 
             <div class="col-lg-6 mx-auto mt-4">
                 <div class="card shadow">
                     <div class="card-header bg-primary">
                         <form action="/admin/edicategory/<%=cate._id %>" method="post">
+                            
+                            
                             
                             <h3 class="text-light">Edit Category</h3>
                     </div>
