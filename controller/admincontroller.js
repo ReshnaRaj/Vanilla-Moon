@@ -92,6 +92,7 @@ adLogin: async (req,res) => {
       }
 
       const isMatch = await bcrypt.compare(password,admin.password);
+      console.log(isMatch);
       if (!isMatch) {
           return res.redirect('/admin');
       }
@@ -226,7 +227,7 @@ posteditproduct:async(req,res,next)=>{
       img.push(element.path.substring(6))
       // sharp(files.path).resize({width:400,height:500}).toFile(`images`)
     });
-    await productModel.findOneAndUpdate({_id:id},{$push:{image:img}})
+    await productModel.findOneAndUpdate({_id:id},{$set:{image:img}})
     
     
     }
@@ -762,13 +763,10 @@ unlistcate: async (req, res) => {
 imagedelete:async(req,res,next)=>{
 try {
   console.log("IMAGE DELETE");
-  const val = req.query.i;
-  const id = req.query.pid;
-  // fs.unlink(path.join(__dirname,  val), () => {});
- const pro = await productModel.findOne({ _id: id });
- console.log(pro,"products");
- pro.image.splice(val,1)
-await pro.save()
+  const val = req.body.img;
+  const id = req.body.pid;
+  fs.unlink(path.join(__dirname,  val), () => {});
+  await productModel.updateOne({ _id: id }, { $pull: { image: val } });
   res.json('succes')
 } catch (error) {
   next(error)
